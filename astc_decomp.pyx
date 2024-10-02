@@ -64,9 +64,9 @@ def decompress_astc(astc_data : bytes, width : int, height : int, block_width : 
     cdef size_t row_length = block_width * k_bytes_per_pixel_unorm8
 
     for i in range(0, len(astc_data), k_size_in_bytes):
-        block_index = i / k_size_in_bytes
+        block_index = i // k_size_in_bytes
         block_x = block_index % blocks_wide
-        block_y = block_index / blocks_wide
+        block_y = block_index // blocks_wide
 
         src = astc_data[i:i + 16]
         block = bytes(block_width * block_height * 4)
